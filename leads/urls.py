@@ -5,10 +5,10 @@ from .views import lead_list, lead_dettail, lead_create, lead_update, lead_delet
 app_name = "leads"
 
 urlpatterns = [
-    path('', lead_list),
-    path('<int:pk>/', lead_dettail),
-    path('create/', lead_create),
-    path('<int:pk>/update/', lead_update),
-    path('<int:pk>/delete/', lead_delete),
+    path('', lead_list, name='lead-list'),
+    path('<int:pk>/', lead_dettail, name='lead-dettail'),
+    path('create/', lead_create, name='lead-create'),
+    path('<int:pk>/update/', lead_update, name='lead-update'),
+    path('<int:pk>/delete/', lead_delete, name='lead-delete'),
 
 ]
