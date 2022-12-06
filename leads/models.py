@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
-    pass
+   is_organisor = models.BooleanField(default=True)
+   is_agent =  models.BooleanField(default=False)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,7 +24,8 @@ class Lead(models.Model):
     firstName = models.CharField(max_length=20)
     lastName = models.CharField(max_length=20)
     age = models.IntegerField(default=0)
-    agent = models.ForeignKey("Agent", on_delete=models.SET_NULL, null=True) #models.CASCADE
+    organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    agent = models.ForeignKey("Agent", null=True, blank=True, on_delete=models.SET_NULL) #models.CASCADE
 
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
